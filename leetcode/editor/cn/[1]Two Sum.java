@@ -12,11 +12,40 @@
 // Related Topics 数组 哈希表
 
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        
+
+//        return Baoli(nums, target);//暴力题解
+
+        return HashSovle(nums, target);  //HashMap 解决
     }
+
+    private int[] Baoli(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+
+                }
+            }
+        }
+        return new int[]{0, 0};
+    }
+
+    private int[] HashSovle(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int i = 0; i < nums.length; i++) {
+
+            if (map.containsKey(target-nums[i])) {
+                return new int[]{i, map.get(target-nums[i])};
+            }
+                map.put(nums[i], i);
+
+        }
+        return new int[]{0, 0};
+    }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
